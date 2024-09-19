@@ -1,0 +1,30 @@
+<mat-form-field>
+    <mat-label>Filter Tasks</mat-label>
+    <mat-select [(value)]="filter" (selectionChange)="applyFilter()">
+      <mat-option value="all">All</mat-option>
+      <mat-option value="completed">Completed</mat-option>
+      <mat-option value="pending">Pending</mat-option>
+    </mat-select>
+  </mat-form-field>
+  
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let task of displayedTasks">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-checkbox [checked]="task.completed" (change)="toggleTaskCompletion(task.id)">
+            {{ task.title }}
+          </mat-checkbox>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>{{ task.description }}</p>
+      <button mat-button (click)="editTask(task.id)">Edit</button>
+      <button mat-button (click)="deleteTask(task.id)">Delete</button>
+    </mat-expansion-panel>
+  </mat-accordion>
+  
+  <mat-paginator 
+    [pageSizeOptions]="[3, 6, 9]" 
+    showFirstLastButtons 
+    (page)="onPageChange($event)">
+  </mat-paginator>
+  

@@ -1,0 +1,10 @@
+nav {
+    padding: 10px;
+    display: flex;
+    gap: 20px;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
